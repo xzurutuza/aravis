@@ -69,6 +69,7 @@ if cc.get_id()!='msvc'
 	libm = cc.find_library ('m', required: true)
 	aravis_dependencies += libm
 endif
+
 if usb_dep.found()
   aravis_dependencies += usb_dep
 endif
