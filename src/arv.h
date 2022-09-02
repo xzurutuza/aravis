@@ -99,6 +99,7 @@
 
 #include <arvinterface.h>
 #include <arvmisc.h>
+#include <arvnetwork.h>
 #include <arvrealtime.h>
 #include <arvstream.h>
 #include <arvstr.h>
