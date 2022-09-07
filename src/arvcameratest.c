@@ -37,6 +37,7 @@ static char *arv_option_range_check = NULL;
 static char *arv_option_access_check = NULL;
 static int arv_option_duration_s = -1;
 static char *arv_option_uv_usb_mode = NULL;
+static char *arv_option_gv_port_range = NULL;
 
 /* clang-format off */
 static const GOptionEntry arv_option_entries[] =
@@ -196,6 +197,11 @@ static const GOptionEntry arv_option_entries[] =
 		"duration",	        		'\0', 0, G_OPTION_ARG_INT,
 		&arv_option_duration_s,		        "Test duration (s)",
 		NULL
+	},
+	{
+		"gv-port-range",		        '\0', 0, G_OPTION_ARG_STRING,
+		&arv_option_gv_port_range,	        "GV port range",
+		"<min>-<max>"
 	},
 	{
 		"debug", 				'd', 0, G_OPTION_ARG_STRING,
@@ -428,6 +434,16 @@ main (int argc, char **argv)
 		printf ("Invalid USB device I/O mode\n");
 		return EXIT_FAILURE;
 	}
+
+        if (arv_option_gv_port_range != NULL) {
+                gboolean success;
+
+                success = arv_set_gv_port_range_from_string (arv_option_gv_port_range);
+                if (!success) {
+                        printf ("Invalid GV port range (%s)\n", arv_option_gv_port_range);
+                        return EXIT_FAILURE;
+                }
+        }
 
 	if (!arv_debug_enable (arv_option_debug_domains)) {
 		if (g_strcmp0 (arv_option_debug_domains, "help") != 0)
