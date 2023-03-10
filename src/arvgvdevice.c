@@ -728,7 +728,8 @@ auto_packet_size (ArvGvDevice *gv_device, gboolean exit_early, GError **error)
 
 		do {
 			if (current_size == last_size ||
-                            min_size + inc >= max_size)
+                            min_size + inc > max_size ||
+                            current_size == min_size)
 				break;
 
 			last_size = current_size;
@@ -753,7 +754,7 @@ auto_packet_size (ArvGvDevice *gv_device, gboolean exit_early, GError **error)
 				max_size = current_size;
 			}
 
-                        current_size = min_size + (((max_size - min_size) / 2 + 1) / inc) * inc;
+                        current_size = min_size + (((max_size - min_size) / 2) / inc) * inc;
 		} while (TRUE);
 
                 if (local_error == NULL) {
