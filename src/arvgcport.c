@@ -47,6 +47,7 @@ static ArvGvLegacyInfos arv_gc_port_legacy_infos[] = {
    { .vendor_selection = "PleoraTechnologiesInc",       .model_selection = "iPORTCLGigE"},
    { .vendor_selection = "PleoraTechnologiesInc",       .model_selection = "NTxGigE"},
    { .vendor_selection = "Sony",                        .model_selection = "XCG_CGSeries"},
+   { .vendor_selection = "NIT",                         .model_selection = "Tachyon16k"},
 };
 
 typedef struct {
